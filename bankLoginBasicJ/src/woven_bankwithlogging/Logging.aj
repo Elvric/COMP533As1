@@ -1,0 +1,18 @@
+package woven_bankwithlogging;
+
+public aspect Logging {
+	after(Object o) : (initialization(public Account.new(..)) && target(o)) ||
+	(initialization(public Customer.new(..)) && target(o))
+		{
+		String stringToLog = "Created object " + o;
+		Logger.log(stringToLog);	
+		}	
+		
+	before(int amount, Object o) : call(public void Account.*(int)) && target(o) && args(amount) 
+		{
+			String stringToLog = "deposit called on object " + o + " with parameter " + amount;
+			Logger.log(stringToLog);
+		}
+		
+}
+ 

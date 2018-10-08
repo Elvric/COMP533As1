@@ -1,0 +1,13 @@
+package woven_bankwithlogging;
+
+public aspect Connector extends Loggable{
+	pointcut CreateLog(Object o) :
+		initialization(public *.new(..)) 
+		&& target(o) && (within(Account) || within(Customer));
+	
+	pointcut OperationCall(Object o) :
+		call(public * *(..)) && target(o) && (within(Account) || within(Customer));
+		
+	
+	
+}

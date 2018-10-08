@@ -1,0 +1,18 @@
+package woven_bankwithlogging;
+
+public aspect Logging {
+	after() : call(Account.new(..)) && !within(Logging) {
+		
+	}
+	
+pointcut CallDepositAccount(int amount, Account a) :
+call(public void Account.deposit(int)) && args(amount) && target(a);
+
+	
+after(int amount, Account a) : 
+	CallDepositAccount(amount,a) {
+		String stringToLog = "deposit called on object " + a + " with parameter " + amount;
+		System.out.println(stringToLog);
+	}
+}
+ 

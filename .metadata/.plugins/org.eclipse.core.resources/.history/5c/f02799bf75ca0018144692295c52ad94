@@ -1,0 +1,24 @@
+package woven_bankwithlogging;
+
+public abstract aspect Loggable {
+	abstract pointcut CreateObjectLog(Object o);
+	abstract pointcut OperationCallLog(Object o);
+	after(Object o) : 
+		CreateObjectLog(o)  {
+		String stringToLog = "Created object " + o;
+		Logger.log(stringToLog);	
+		}
+	
+	before(Object o) : OperationCallLog(o){
+		Object[] args = thisJoinPoint.getArgs();
+		StringBuilder output = new StringBuilder();
+		for(int i = 0; i < args.length; i++)
+		{
+			output.append(args[i] + " ");
+		}
+		String name = thisJoinPoint.getSignature().getName();
+		String stringToLog =  name + " call on object " +
+							 o + " with parameter " + output;
+		Logger.log(stringToLog);
+	}
+}
