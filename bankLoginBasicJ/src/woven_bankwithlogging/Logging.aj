@@ -1,4 +1,4 @@
-package task2;
+package woven_bankwithlogging;
 
 /**
  * The "Logging" aspect records every executed method by printing a message about
