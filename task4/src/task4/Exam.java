@@ -28,7 +28,7 @@ public class Exam {
     
     public String toString(){
     	return "Exam for course code " + this.courseCode + " with weigth " + weigth 
-    			+ " and " + students.size() + " many students in it";
+    			+ " and " + students.size() + " students in it";
     }
     
     public int getCourseCode(){

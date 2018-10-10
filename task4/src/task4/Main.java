@@ -46,9 +46,9 @@ public class Main {
 				+ "To exit: exit";
 		
 		System.out.println(welcome);
+		System.out.println(directive);
 		
 		while(keepAsking){
-			System.out.println(directive);
 			
 			// get user input
 			input = scanner.nextLine();
